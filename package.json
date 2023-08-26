@@ -1,36 +1,36 @@
 {
-  "name": "npm-package-ts-scaffolding",
+  "name": "@mawhea/npm-package-starter",
   "description": "A scaffolding for npm packages written in TypeScript",
   "private": false,
   "version": "0.0.2",
+  "module": "dist/index.esm.js",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
-  },
   "scripts": {
-    "ts-types": "tsc --emitDeclarationOnly",
-    "check": "npm run prettier && npm run lint && npm test",
-    "build": "npm run check && rimraf dist && NODE_ENV=production node esbuild.js && npm run ts-types",
-    "prettier": "prettier --write ./src",
+    "build:esbuild": "ts-node esbuild.ts",
+    "build:tsc": "tsc -p ./tsconfig.build.json",
+    "build:types": "tsc --emitDeclarationOnly --declaration --project tsconfig.build.json",
+    "check": "npm run format && npm run lint && npm test",
+    "build": "npm run check && rimraf dist && npm run build:esbuild && npm run build:types",
+    "format": "prettier . --write",
     "lint": "eslint ./src --ext .ts",
     "dev": "jest --watch",
     "test": "jest --no-cache",
-    "coverage": "jest --coverage",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest unit",
+    "test:integration": "jest int",
+    "prepare": "npm run build",
+    "prepublish": "npm run build",
+    "prepublishOnly": "npm run check",
+    "preversion": "npm run check",
     "release:common": "npm run build && git push --follow-tags origin main && npm publish --access public",
     "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'docs: updated changelog' && npm version patch && npm run release:common",
     "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'docs: updated changelog' && npm version minor && npm run release:common",
     "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'docs: updated changelog' && npm version major && npm run release:common"
   },
-  "prepublish": "npm run build",
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
@@ -57,14 +57,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Cadienvan/npm-package-ts-scaffolding.git"
+    "url": "git://github.com/mjwheatley/npm-package-starter"
   },
   "license": "MIT",
-  "author": "Michael Di Prisco <cadienvan@gmail.com>",
+  "author": "Matthew Wheatley <mattjwheatley@gmail.com>",
   "keywords": [
     "npm",
     "package",
+    "node",
+    "module",
+    "scaffolding",
+    "starter",
     "typescript",
-    "scaffolding"
+    "esbuild",
+    "jest",
+    "eslint",
+    "prettier",
+    "husky",
+    "commitlint"
   ]
 }
