@@ -1,16 +1,49 @@
-# What is this?
+# npm-package-starter
+
+## What is this?
 
 A simple scaffolding tool for creating a new project to be published to npm.  
-It provides a build command that will compile your code to a CommonJS Node 14.16 target, allowing named imports for CommonJS packages inside ESM files.  
-The package contains a simple "hello world" based on TypeScript, built on esbuild, tested through Jest and linted with ESLint and Prettier.  
-It also provides a Husky pre-commit hook to run some linting based on prettier and eslint and run tests, so you can simple `git add` and `git commit` without worrying about anything else.
+It provides a build command that will compile your code to a CommonJS Node target, allowing named imports for CommonJS packages inside ESM files.  
+The package contains a simple "hello world" based on TypeScript, built on esbuild, tested through Vitest and linted with ESLint, Prettier, Secretlint, Cspell, and CommitLint.  
+It also provides a Husky pre-commit hook to run some linting based on prettier and eslint and run tests, so you can simply `git add` and `git commit` without worrying about anything else.
+
+# Engineering Enablement
+
+This monorepo contains our shared packages.
+
+## Local development
+
+Please make sure you have [`Node.js`](https://nodejs.org/) and [`pnpm`](https://pnpm.io/) installed.
+
+### Node.js
+
+You can use either `fnm` or `nvm` to install the version of Node defined in the [`.nvmrc`](.nvmrc) file.
+
+- [Fast Node Manager (fnm)](https://github.com/Schniz/fnm)
+  - `brew install fnm`
+  - `fnm use`
+- [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm)
+  - `brew install nvm`
+  - `nvm use`
+
+### PNPM
+
+```sh
+corepack enable
+```
+
+_Note:_ If you already have `pnpm` installed via `brew` or `npm i -g`, you should remove those versions as they are not needed anymore. Corepack will handle installing the correct version for you.
+
+_Warning:_ If you get `command not found` when trying to run `corepack`, you probably didn't use `fnm`/`nvm` to install Node. The preferred fix is to use one of those tools to manage your installed Node versions. If you don't want to use them, you will need to install [`corepack`](https://github.com/nodejs/corepack) manually.
+
+- `npm install -g corepack`
 
 ## How To Install?
 
 ```bash
-git clone git://github.com/Cadienvan/npm-package-ts-scaffolding.git package_name
-cd package_name
-npm install
+git clone git://github.com/mjwheatley/npm-package-starter.git package_name
+cd npm-package-starter
+pnpm install
 npx husky install
 ```
 
@@ -43,32 +76,24 @@ Please, remember to give me a star if you like the project!
 # What's Inside?
 
 - Typescript
-- Jest
+- Vitest
 - Eslint
 - Prettier
 - Husky
 - Esbuild
 - Commitlint
+- Secretlint
+- Cspell
+- Semantic Release
 
 # How to push and release an update?
 
-```bash
-git add --all
-git commit -m "chore: update package"
-npm run release:patch
-```
+Merge or push changes to the `main` branch to trigger the `semantic-release` GitHub workflow.
 
-Remember to follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standard.
-You can substitute `patch` with `minor` or `major` to update the version accordingly.
+Commitlint will enforce [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) so `semantic-release` can automatically version your package.
 
 # How to run tests?
 
 ```bash
-npm test
+pnpm test
 ```
-
-# Contributing
-
-If you want to contribute to this project, please open an issue or a pull request.  
-I will be happy to review it and merge it if it's useful.  
-Please, remember to follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standard.

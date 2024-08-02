@@ -1,5 +1,5 @@
-import { constants } from '../src/constants';
-import { sayHello } from '../src';
+import { constants } from '../../src/constants.js';
+import { sayHello } from '../../src/index.js';
 
 describe('index.ts unit tests', () => {
   describe('sayHello()', () => {

@@ -2,7 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "module": "commonjs"
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "resolvePackageJsonImports": false,
+    "resolvePackageJsonExports": false,
+    "verbatimModuleSyntax": false
   },
-  "exclude": ["node_modules", "dist", "./jest.config.ts", "./esbuild.ts", "./__tests__/**"]
+  "exclude": ["node_modules", "dist", "./vitest.config.ts", "./esbuild.ts", "./__tests__/**"]
 }

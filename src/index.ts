@@ -1,5 +1,5 @@
-import { constants } from './constants';
+import { constants } from './constants.js';
 
-export const sayHello = () => {
+export const sayHello = (): string => {
   return constants.HELLO_WORLD;
 };
