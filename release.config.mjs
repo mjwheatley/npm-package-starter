@@ -19,6 +19,5 @@ export default {
   ],
   /* eslint-disable-next-line no-template-curly-in-string */
   tagFormat: 'v${version}',
-  plugins: ['semantic-release-commits-lint'],
   ci: true,
 };
