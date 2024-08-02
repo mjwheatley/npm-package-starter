@@ -24,11 +24,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: make image
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
