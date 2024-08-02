@@ -8,10 +8,6 @@ dist
 !.vscode/extensions.json
 .idea
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
 
 coverage
+.eslintcache

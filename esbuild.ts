@@ -1,10 +1,10 @@
-import { build, BuildOptions } from 'esbuild';
+import { build, type BuildOptions } from 'esbuild';
 
 const sharedConfig: BuildOptions = {
   entryPoints: ['src/index.ts'],
   bundle: true,
   minify: true,
-  packages: 'external'
+  packages: 'external',
 };
 
 build({
@@ -13,20 +13,21 @@ build({
   format: 'cjs',
   bundle: true,
   sourcemap: true,
-  minify: true,
+  minify: false,
   platform: 'node',
   tsconfig: './tsconfig.build.json',
-  packages: 'external'
+  packages: 'external',
 }).catch(() => process.exit(1));
 
-build({
+await build({
   ...sharedConfig,
   platform: 'node', // for CJS
-  outfile: 'dist/index.js'
+  outfile: 'dist/index.js',
 });
-build({
+
+await build({
   ...sharedConfig,
   outfile: 'dist/index.esm.js',
   platform: 'neutral', // for ESM
-  format: 'esm'
+  format: 'esm',
 });
