@@ -55,7 +55,7 @@ jobs:
         run: pnpm test
 
       - name: Run integration tests
-        run: pnpm test:int
+        run: pnpm test:integration
 
       - name: Report Coverage
         # Set if: always() to also generate the report if tests are failing
