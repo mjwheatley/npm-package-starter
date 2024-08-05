@@ -20,7 +20,6 @@ export default {
   /* eslint-disable-next-line no-template-curly-in-string */
   tagFormat: 'v${version}',
   ci: true,
-  repositoryUrl: '',
   plugins: [
     [
       '@semantic-release/commit-analyzer',
