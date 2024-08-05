@@ -7,10 +7,6 @@ It provides a build command that will compile your code to a CommonJS Node targe
 The package contains a simple "hello world" based on TypeScript, tested through Vitest and linted with ESLint, Prettier, Secretlint, Cspell, and CommitLint.  
 It also provides a Husky pre-commit hook to run some linting based on prettier and eslint and run tests, so you can simply `git add` and `git commit` without worrying about anything else.
 
-# Engineering Enablement
-
-This monorepo contains our shared packages.
-
 ## Local development
 
 Please make sure you have [`Node.js`](https://nodejs.org/) and [`pnpm`](https://pnpm.io/) installed.
