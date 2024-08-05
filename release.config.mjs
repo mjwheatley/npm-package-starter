@@ -1,5 +1,5 @@
 /**
- * @type {import('semantic-release-plus').GlobalConfig}
+ * @type {import('semantic-release').GlobalConfig}
  */
 export default {
   branches: [
@@ -20,4 +20,20 @@ export default {
   /* eslint-disable-next-line no-template-curly-in-string */
   tagFormat: 'v${version}',
   ci: true,
+  repositoryUrl: '',
+  plugins: [
+    [
+      '@semantic-release/commit-analyzer',
+      {
+        preset: 'angular',
+        releaseRules: [
+          { type: 'docs', scope: 'README', release: 'patch' },
+          { type: 'refactor', release: 'patch' },
+          { type: 'build', scope: 'output', release: 'patch' },
+          { scope: 'patch', release: 'patch' },
+          { scope: 'no-release', release: false },
+        ],
+      },
+    ],
+  ],
 };

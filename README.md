@@ -4,7 +4,7 @@
 
 A simple scaffolding tool for creating a new project to be published to npm.  
 It provides a build command that will compile your code to a CommonJS Node target, allowing named imports for CommonJS packages inside ESM files.  
-The package contains a simple "hello world" based on TypeScript, built on esbuild, tested through Vitest and linted with ESLint, Prettier, Secretlint, Cspell, and CommitLint.  
+The package contains a simple "hello world" based on TypeScript, tested through Vitest and linted with ESLint, Prettier, Secretlint, Cspell, and CommitLint.  
 It also provides a Husky pre-commit hook to run some linting based on prettier and eslint and run tests, so you can simply `git add` and `git commit` without worrying about anything else.
 
 # Engineering Enablement
@@ -80,7 +80,6 @@ Please, remember to give me a star if you like the project!
 - Eslint
 - Prettier
 - Husky
-- Esbuild
 - Commitlint
 - Secretlint
 - Cspell
