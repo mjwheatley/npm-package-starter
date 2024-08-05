@@ -34,5 +34,8 @@ export default {
         ],
       },
     ],
+    '@semantic-release/release-notes-generator',
+    '@semantic-release/npm',
+    '@semantic-release/github',
   ],
 };
