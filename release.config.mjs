@@ -1,6 +1,16 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+const finalizeContext = (context) => {
+  for (const commitGroup of context.commitGroups) {
+    for (const commit of commitGroup.commits) {
+      commit.bodyLines = commit.body?.split('\n').filter((line) => line !== '') ?? [];
+    }
+  }
+
+  return context;
+};
+
 /**
  * @type {import('semantic-release').GlobalConfig}
  */
@@ -9,7 +19,6 @@ export default {
     '+([0-9])?(.{+([0-9]),x}).x',
     'main',
     'next',
-
     'next-major',
     {
       name: 'beta',
@@ -28,7 +37,6 @@ export default {
     [
       '@semantic-release/commit-analyzer',
       {
-        preset: 'angular',
         releaseRules: [
           { type: 'docs', scope: 'README', release: 'patch' },
           { type: 'refactor', release: 'patch' },
@@ -58,6 +66,7 @@ export default {
         },
         writerOpts: {
           commitPartial: readFileSync(join(import.meta.dirname, 'commit.hbs'), 'utf-8'),
+          finalizeContext,
         },
       },
     ],

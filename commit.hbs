@@ -1,4 +1,14 @@
-{{#if scope}}
+{{!--
+  Copy of https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-conventionalcommits/templates/commit.hbs
+
+  The following have been replaced:
+
+  - `commitUrlFormat` with `{{@root.host}}/{{@root.owner}}/{{@root.repository}}/commit/{{hash}})`
+  - `issueUrlFormat` with `{{@root.host}}/{{@root.owner}}/{{@root.repository}}/issues/{{this.id}}`
+
+  As they won't be replaced when overriding the commitPartial
+--}}
+*{{#if scope}}
   **{{scope}}:**&nbsp;
 {{~/if}}
 {{#if subject}}
@@ -7,24 +17,12 @@
   {{~header}}
 {{~/if}}
 
-{{~! commit link }}
-{{#if @root.linkReferences~}}
-  ([{{shortHash}}](
-  {{~#if @root.repository}}
-    {{~#if @root.host}}
-      {{~@root.host}}/
-    {{~/if}}
-    {{~#if @root.owner}}
-      {{~@root.owner}}/
-    {{~/if}}
-    {{~@root.repository}}
+{{~! commit link }}{{~#if hash}}
+  {{#if @root.linkReferences~}}
+    ([{{shortHash}}]({{@root.host}}/{{@root.owner}}/{{@root.repository}}/commit/{{hash}}))
   {{~else}}
-    {{~@root.repoUrl}}
-  {{~/if}}/
-  {{~@root.commit}}/{{hash}}))
-{{~else}}
-  {{~shortHash}}
-{{~/if}}
+    {{~shortHash}}
+  {{~/if}}{{~/if}}
 
 {{~! commit references }}
 {{~#if references~}}
@@ -35,37 +33,22 @@
       {{~#if this.owner}}
         {{~this.owner}}/
       {{~/if}}
-      {{~this.repository}}#{{this.issue}}](
-      {{~#if @root.repository}}
-        {{~#if @root.host}}
-          {{~@root.host}}/
-        {{~/if}}
-        {{~#if this.repository}}
-          {{~#if this.owner}}
-            {{~this.owner}}/
-          {{~/if}}
-          {{~this.repository}}
-        {{~else}}
-          {{~#if @root.owner}}
-            {{~@root.owner}}/
-          {{~/if}}
-          {{~@root.repository}}
-        {{~/if}}
-      {{~else}}
-        {{~@root.repoUrl}}
-      {{~/if}}/
-      {{~@root.issue}}/{{this.issue}})
+      {{~this.repository}}{{this.prefix}}{{this.issue}}]({{@root.host}}/{{@root.owner}}/{{@root.repository}}/issues/{{this.id}})
     {{~else}}
       {{~#if this.owner}}
         {{~this.owner}}/
       {{~/if}}
-      {{~this.repository}}#{{this.issue}}
+      {{~this.repository}}{{this.prefix}}{{this.issue}}
     {{~/if}}{{/each}}
 {{~/if}}
+{{! End of copy }}
 
-{{~#if body}}
-  {{#raw}}{{/raw}}
-  {{body}}
-{{~/if}}
+{{! Start of custom additions }}
+{{#each bodyLines}}
 
-{{#raw}}{{/raw}}
+  {{this}}
+{{/each}}{{#each notes}}
+  **BREAKING CHANGE**:
+  {{text}}
+{{/each}}
+{{! End of custom additions }}
