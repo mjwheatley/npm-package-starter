@@ -66,8 +66,13 @@ This is a simple tool to create a new project with the basic files needed to pub
 
 # How can I personalize it?
 
-You can change the `package.json` file to your liking, bringing your own package name and description.  
-Please, remember to give me a star if you like the project!
+You can change the `package.json` file to your liking, bringing your own package name and description.
+
+- Update package `name`
+- Update package `description`
+- Update `repository.url`
+- Update `author`
+- Update `exports` to represent your package's individual file exports
 
 # What's Inside?
 
@@ -84,6 +89,8 @@ Please, remember to give me a star if you like the project!
 # How to push and release an update?
 
 Merge or push changes to the `main` branch to trigger the `semantic-release` GitHub workflow.
+
+If you are publishing to the public NPM registry, create an `NPM_TOKEN` secret in your GitHub repository with your NPM token.
 
 Commitlint will enforce [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) so `semantic-release` can automatically version your package.
 

@@ -10,7 +10,7 @@ on:
       - '*.x'
 
 permissions:
-  packages: read
+  packages: write # to be able to publish to GitHub Packages
   contents: write # to be able to publish a GitHub release
   issues: write # to be able to comment on released issues
   pull-requests: write # to be able to comment on released pull requests
@@ -39,12 +39,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build
-        run: pnpm build
-
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+          NPM_CONFIG_PROVENANCE: ${{ secrets.NPM_TOKEN && 'true' || 'false' }}
         run: npx --no semantic-release

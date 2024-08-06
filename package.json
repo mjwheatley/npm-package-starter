@@ -1,14 +1,37 @@
 {
+  "version": "0.0.0-semantically-released",
   "name": "@mawhea/npm-package-starter",
   "description": "A scaffolding for npm packages written in TypeScript",
+  "author": "Matthew Wheatley <mattjwheatley@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mjwheatley/npm-package-starter.git"
+  },
+  "keywords": [
+    "npm",
+    "package",
+    "node",
+    "module",
+    "scaffolding",
+    "starter",
+    "typescript",
+    "vitest",
+    "eslint",
+    "prettier",
+    "husky",
+    "commitlint",
+    "cspell",
+    "secretlint"
+  ],
+  "license": "MIT",
   "private": false,
-  "version": "0.0.0-semantically-released",
   "type": "module",
   "main": "dist/cjs/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
+  "packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35",
   "scripts": {
     "check": "pnpm format && pnpm lint && pnpm typecheck && pnpm secretlint && pnpm spellcheck && pnpm test",
     "build": "pnpm check && rimraf dist && pnpm build:cjs && pnpm build:mjs",
@@ -44,6 +67,7 @@
     "@vitest/coverage-v8": "^2.0.4",
     "@webdeveric/eslint-config-ts": "^0.8.0",
     "commitlint-plugin-cspell": "^0.1.1",
+    "conventional-changelog-conventionalcommits": "~8.0.0",
     "cspell": "^8.12.1",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
@@ -68,29 +92,6 @@
       "npx eslint --fix"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mjwheatley/npm-package-starter"
-  },
-  "license": "MIT",
-  "author": "Matthew Wheatley <mattjwheatley@gmail.com>",
-  "keywords": [
-    "npm",
-    "package",
-    "node",
-    "module",
-    "scaffolding",
-    "starter",
-    "typescript",
-    "vitest",
-    "eslint",
-    "prettier",
-    "husky",
-    "commitlint",
-    "cspell",
-    "secretlint"
-  ],
-  "packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
